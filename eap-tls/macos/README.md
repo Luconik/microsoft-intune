@@ -13,7 +13,6 @@
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Part 0 — Apple MDM Push Certificate](#part-0--apple-mdm-push-certificate)
 - [Part 1 — Intune Configuration Profiles](#part-1--intune-configuration-profiles)
   - [1.1 Trusted Certificate](#11-trusted-certificate)
   - [1.2 SCEP Certificate](#12-scep-certificate)
@@ -30,7 +29,7 @@
 
 ## Overview
 
-This guide covers the **Microsoft Intune** side of the EAP-TLS configuration for macOS — APNs setup, Intune profiles (Trusted Certificate, SCEP, Wi-Fi), and Company Portal enrollment.
+This guide covers the **Microsoft Intune** side of the EAP-TLS configuration for macOS — Intune profiles (Trusted Certificate, SCEP, Wi-Fi) and Company Portal enrollment.
 
 ```
 macOS endpoint (Intune-managed)
@@ -52,90 +51,19 @@ Network access granted (role assigned by NAC policy)
 ```
 
 > [!NOTE]
-> This guide covers Intune configuration only. For the Aruba Central NAC side (identity store, roles, authorization policies, SSID), see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
+> This guide covers Intune configuration only. For the one-time prerequisites (Entra ID App Registration + Apple APNs certificate), see [../prerequisites/README.md](../prerequisites/README.md). For the Aruba Central NAC configuration, see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 ---
 
 ## Prerequisites
 
+- One-time prerequisites completed — see [../prerequisites/README.md](../prerequisites/README.md)
+  - Entra ID App Registration configured
+  - **Apple MDM Push Certificate (APNs)** configured in Intune
 - Aruba Central NAC configured — see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
-- Microsoft Intune tenant active
-- **Apple MDM Push Certificate** configured in Intune (Part 0 below) — one-time setup for all Apple platforms
+- SCEP URL and root CA certificate retrieved from Central NAC
 - macOS 14 Sonoma or later
 - Microsoft **Company Portal** installed on the device
-
----
-
-## Part 0 — Apple MDM Push Certificate
-
-> [!IMPORTANT]
-> This is a one-time prerequisite for the entire Apple ecosystem (macOS + iOS/iPadOS). Skip if already configured.
-
-### 0.1 Open Apple enrollment in Intune
-
-Navigate to:
-```
-Intune Admin Center → Devices → Enrollment → Apple tab
-```
-
-<p align="center"><img src="screenshots/71-intune-apns-enrollment-apple-tab.png" alt="Intune - Apple enrollment tab" width="900"/></p>
-
-Click **Apple MDM Push Certificate**.
-
----
-
-### 0.2 Download the CSR
-
-Check **I agree** to grant Microsoft permission to send data to Apple, then click **Download your CSR**.
-
-<p align="center"><img src="screenshots/72-intune-apns-configure-mdm-push-agree.png" alt="Intune - Configure MDM Push Certificate" width="900"/></p>
-
----
-
-### 0.3 Sign in to Apple Push Certificates Portal
-
-Go to [https://identity.apple.com](https://identity.apple.com) and sign in with a **corporate Apple ID**.
-
-<p align="center"><img src="screenshots/73-intune-apns-apple-id-login.png" alt="Apple ID - Sign in" width="900"/></p>
-
-> [!WARNING]
-> Use a shared corporate Apple ID, not a personal one. The certificate renewal will require the same Apple ID each year.
-
----
-
-### 0.4 Create a new Push Certificate
-
-Click **Create a Certificate**, then accept the Terms of Use.
-
-<p align="center"><img src="screenshots/74-intune-apns-push-portal-existing-certs.png" alt="Apple Push Portal - Existing certificates" width="900"/></p>
-
-<p align="center"><img src="screenshots/75-intune-apns-push-portal-terms.png" alt="Apple Push Portal - Terms of Use" width="900"/></p>
-
-<p align="center"><img src="screenshots/76-intune-apns-push-portal-terms-accepted.png" alt="Apple Push Portal - Terms accepted" width="900"/></p>
-
----
-
-### 0.5 Upload the CSR and download the certificate
-
-Upload the `IntuneCSR.csr` file downloaded in step 0.2, then click **Upload**.
-
-<p align="center"><img src="screenshots/77-intune-apns-push-portal-upload-csr.png" alt="Apple Push Portal - Upload CSR" width="900"/></p>
-
-Download the generated `.pem` certificate.
-
-<p align="center"><img src="screenshots/78-intune-apns-push-portal-confirmation.png" alt="Apple Push Portal - Confirmation" width="900"/></p>
-
----
-
-### 0.6 Upload the certificate to Intune
-
-Back in Intune, enter the Apple ID used, upload the `.pem` file, then click **Upload**.
-
-<p align="center"><img src="screenshots/79-intune-apns-configure-mdm-push-upload-pem.png" alt="Intune - Upload MDM Push Certificate" width="900"/></p>
-
-The certificate is now configured and active.
-
-<p align="center"><img src="screenshots/80-intune-apns-configure-mdm-push-configured.png" alt="Intune - MDM Push Certificate configured" width="900"/></p>
 
 ---
 
@@ -432,7 +360,6 @@ The device should be **Compliant** and all three configuration profiles should s
 ## References
 
 - 📘 [Aruba Central NAC — UEM Onboarding with Intune](https://arubanetworking.hpe.com/techdocs/NAC/central-nac/central-nac-uem-onboarding-intune/)
-- [Microsoft Intune — Apple MDM Push Certificate](https://learn.microsoft.com/en-us/mem/intune/enrollment/apple-mdm-push-certificate-get)
 - [Microsoft Intune — SCEP Certificate Profiles](https://learn.microsoft.com/en-us/mem/intune/protect/certificates-scep-configure)
 - [Microsoft Intune — macOS enrollment](https://learn.microsoft.com/en-us/mem/intune/enrollment/macos-enroll)
 - [Apple Push Certificates Portal](https://identity.apple.com/pushcert/)
@@ -446,11 +373,11 @@ eap-tls/macos/
 ├── README.md               ← This file (EN)
 ├── README-fr.md            ← French version
 └── screenshots/
-    ├── 71-intune-apns-enrollment-apple-tab.png
+    ├── 81-intune-macos-trusted-profile-select.png
     ├── ...
     ├── 130-intune-macos-profiles-list.png
     └── fr/
-        ├── 100-macos-cp-install-intro-fr.png
+        ├── 107-macos-cp-signin-fr.png
         └── ...
 ```
 

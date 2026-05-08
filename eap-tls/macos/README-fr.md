@@ -13,7 +13,6 @@
 
 - [Présentation](#présentation)
 - [Prérequis](#prérequis)
-- [Partie 0 — Certificat Apple MDM Push](#partie-0--certificat-apple-mdm-push)
 - [Partie 1 — Profils de configuration Intune](#partie-1--profils-de-configuration-intune)
   - [1.1 Trusted Certificate](#11-trusted-certificate)
   - [1.2 SCEP Certificate](#12-scep-certificate)
@@ -30,7 +29,7 @@
 
 ## Présentation
 
-Ce guide couvre la partie **Microsoft Intune** de la configuration EAP-TLS pour macOS — configuration APNs, profils Intune (Trusted Certificate, SCEP, Wi-Fi) et enrôlement via Company Portal.
+Ce guide couvre la partie **Microsoft Intune** de la configuration EAP-TLS pour macOS — profils Intune (Trusted Certificate, SCEP, Wi-Fi) et enrôlement via Company Portal.
 
 ```
 Endpoint macOS (géré par Intune)
@@ -52,90 +51,19 @@ Accès réseau accordé (rôle assigné par la politique NAC)
 ```
 
 > [!NOTE]
-> Ce guide couvre uniquement la configuration Intune. Pour la partie Aruba Central NAC (identity store, rôles, politiques d'autorisation, SSID), voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
+> Ce guide couvre uniquement la configuration Intune. Pour les prérequis uniques (App Registration Entra ID + certificat Apple APNs), voir [../prerequisites/README-fr.md](../prerequisites/README-fr.md). Pour la configuration Aruba Central NAC, voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 ---
 
 ## Prérequis
 
+- Prérequis uniques complétés — voir [../prerequisites/README-fr.md](../prerequisites/README-fr.md)
+  - App Registration Entra ID configurée
+  - **Certificat Apple MDM Push (APNs)** configuré dans Intune
 - Aruba Central NAC configuré — voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
-- Tenant Microsoft Intune actif
-- **Certificat Apple MDM Push** configuré dans Intune (Partie 0 ci-dessous) — configuration unique pour toutes les plateformes Apple
+- URL SCEP et certificat CA racine récupérés depuis Central NAC
 - macOS 14 Sonoma ou version ultérieure
 - Application Microsoft **Company Portal** installée sur l'appareil
-
----
-
-## Partie 0 — Certificat Apple MDM Push
-
-> [!IMPORTANT]
-> C'est un prérequis unique pour l'ensemble de l'écosystème Apple (macOS + iOS/iPadOS). À ignorer si déjà configuré.
-
-### 0.1 Ouvrir l'enrollment Apple dans Intune
-
-Naviguer vers :
-```
-Intune Admin Center → Appareils → Enrollment → Onglet Apple
-```
-
-<p align="center"><img src="screenshots/71-intune-apns-enrollment-apple-tab.png" alt="Intune - Onglet enrollment Apple" width="900"/></p>
-
-Cliquer sur **Apple MDM Push Certificate**.
-
----
-
-### 0.2 Télécharger le CSR
-
-Cocher **I agree** pour autoriser Microsoft à envoyer des données à Apple, puis cliquer sur **Download your CSR**.
-
-<p align="center"><img src="screenshots/72-intune-apns-configure-mdm-push-agree.png" alt="Intune - Configurer MDM Push Certificate" width="900"/></p>
-
----
-
-### 0.3 Se connecter au portail Apple Push Certificates
-
-Aller sur [https://identity.apple.com](https://identity.apple.com) et se connecter avec un **Apple ID d'entreprise**.
-
-<p align="center"><img src="screenshots/73-intune-apns-apple-id-login.png" alt="Apple ID - Connexion" width="900"/></p>
-
-> [!WARNING]
-> Utiliser un Apple ID d'entreprise partagé, pas un Apple ID personnel. Le renouvellement annuel du certificat nécessitera le même Apple ID.
-
----
-
-### 0.4 Créer un nouveau certificat Push
-
-Cliquer sur **Create a Certificate**, puis accepter les Conditions d'utilisation.
-
-<p align="center"><img src="screenshots/74-intune-apns-push-portal-existing-certs.png" alt="Apple Push Portal - Certificats existants" width="900"/></p>
-
-<p align="center"><img src="screenshots/75-intune-apns-push-portal-terms.png" alt="Apple Push Portal - Conditions d'utilisation" width="900"/></p>
-
-<p align="center"><img src="screenshots/76-intune-apns-push-portal-terms-accepted.png" alt="Apple Push Portal - Conditions acceptées" width="900"/></p>
-
----
-
-### 0.5 Uploader le CSR et télécharger le certificat
-
-Uploader le fichier `IntuneCSR.csr` téléchargé à l'étape 0.2, puis cliquer sur **Upload**.
-
-<p align="center"><img src="screenshots/77-intune-apns-push-portal-upload-csr.png" alt="Apple Push Portal - Upload CSR" width="900"/></p>
-
-Télécharger le certificat `.pem` généré.
-
-<p align="center"><img src="screenshots/78-intune-apns-push-portal-confirmation.png" alt="Apple Push Portal - Confirmation" width="900"/></p>
-
----
-
-### 0.6 Uploader le certificat dans Intune
-
-De retour dans Intune, saisir l'Apple ID utilisé, uploader le fichier `.pem`, puis cliquer sur **Upload**.
-
-<p align="center"><img src="screenshots/79-intune-apns-configure-mdm-push-upload-pem.png" alt="Intune - Upload du certificat MDM Push" width="900"/></p>
-
-Le certificat est maintenant configuré et actif.
-
-<p align="center"><img src="screenshots/80-intune-apns-configure-mdm-push-configured.png" alt="Intune - Certificat MDM Push configuré" width="900"/></p>
 
 ---
 
@@ -432,7 +360,6 @@ L'appareil doit être **Conforme** et les trois profils de configuration doivent
 ## Références
 
 - 📘 [Aruba Central NAC — UEM Onboarding with Intune](https://arubanetworking.hpe.com/techdocs/NAC/central-nac/central-nac-uem-onboarding-intune/)
-- [Microsoft Intune — Certificat Apple MDM Push](https://learn.microsoft.com/fr-fr/mem/intune/enrollment/apple-mdm-push-certificate-get)
 - [Microsoft Intune — Profils de certificat SCEP](https://learn.microsoft.com/fr-fr/mem/intune/protect/certificates-scep-configure)
 - [Microsoft Intune — Enrôlement macOS](https://learn.microsoft.com/fr-fr/mem/intune/enrollment/macos-enroll)
 - [Portail Apple Push Certificates](https://identity.apple.com/pushcert/)
@@ -446,11 +373,11 @@ eap-tls/macos/
 ├── README.md               ← Version anglaise
 ├── README-fr.md            ← Ce fichier (FR)
 └── screenshots/
-    ├── 71-intune-apns-enrollment-apple-tab.png
+    ├── 81-intune-macos-trusted-profile-select.png
     ├── ...
     ├── 130-intune-macos-profiles-list.png
     └── fr/
-        ├── 100-macos-cp-install-intro-fr.png
+        ├── 107-macos-cp-signin-fr.png
         └── ...
 ```
 

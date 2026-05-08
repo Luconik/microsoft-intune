@@ -48,13 +48,14 @@ Network access granted (role assigned by NAC policy)
 ```
 
 > [!NOTE]
-> This guide covers Intune configuration only. For the Aruba Central NAC side (Entra ID App Registration, identity store, roles, authorization policies, SSID), see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
+> This guide covers Intune profile configuration only. For the one-time prerequisites (Entra ID App Registration), see [../prerequisites/README.md](../prerequisites/README.md). For the Aruba Central NAC configuration, see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 ---
 
 ## Prerequisites
 
-- Aruba Central NAC fully configured — see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
+- One-time prerequisites completed — see [../prerequisites/README.md](../prerequisites/README.md)
+- Aruba Central NAC configured — see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
 - SCEP URL and root CA certificate retrieved from Central NAC (step 3.8 of the NAC guide)
 - Microsoft Intune tenant active
 - Windows 10 or Windows 11 device enrolled in Intune
@@ -213,7 +214,6 @@ The connection is established automatically using the EAP-TLS certificate.
 - 📘 [Aruba Central NAC — UEM Onboarding with Intune](https://arubanetworking.hpe.com/techdocs/NAC/central-nac/central-nac-uem-onboarding-intune/)
 - [Microsoft Intune — SCEP Certificate Profiles](https://learn.microsoft.com/en-us/mem/intune/protect/certificates-scep-configure)
 - [Microsoft Intune — Wi-Fi profiles for Windows](https://learn.microsoft.com/en-us/mem/intune/configuration/wi-fi-settings-windows)
-- [Microsoft Entra ID — App Registration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
 
 ---
 
