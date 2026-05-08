@@ -51,13 +51,13 @@ Accès réseau accordé (rôle assigné par la politique NAC)
 ```
 
 > [!NOTE]
-> Ce guide couvre uniquement la configuration Intune. Pour les prérequis uniques (App Registration Entra ID + certificat Apple APNs), voir [../prerequisites/README-fr.md](../prerequisites/README-fr.md). Pour la configuration Aruba Central NAC, voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
+> Ce guide couvre uniquement la configuration Intune. Pour les prérequis uniques (App Registration Entra ID + certificat Apple APNs), voir [../../prerequisites/README-fr.md](../../prerequisites/README-fr.md). Pour la configuration Aruba Central NAC, voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 ---
 
 ## Prérequis
 
-- Prérequis uniques complétés — voir [../prerequisites/README-fr.md](../prerequisites/README-fr.md)
+- Prérequis uniques complétés — voir [../../prerequisites/README-fr.md](../../prerequisites/README-fr.md)
   - App Registration Entra ID configurée
   - **Certificat Apple MDM Push (APNs)** configuré dans Intune
 - Aruba Central NAC configuré — voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
