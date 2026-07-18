@@ -207,9 +207,9 @@ Once prerequisites are configured, proceed to the platform guides:
 
 | Platform | Guide |
 |---|---|
-| Windows | [../windows/README.md](../windows/README.md) |
-| macOS | [../macos/README.md](../macos/README.md) |
-| iOS/iPadOS | [../ios/README.md](../ios/README.md) |
+| Windows | [../eap-tls/windows/README.md](../eap-tls/windows/README.md) |
+| macOS | [../eap-tls/macos/README.md](../eap-tls/macos/README.md) |
+| iOS/iPadOS | [../eap-tls/ios/README.md](../eap-tls/ios/README.md) |
 
 For the Aruba Central NAC configuration (identity store, roles, authorization policies, SSID), see:
 
@@ -220,7 +220,7 @@ For the Aruba Central NAC configuration (identity store, roles, authorization po
 ## File structure
 
 ```
-eap-tls/prerequisites/
+prerequisites/
 ├── README.md               ← This file (EN)
 ├── README-fr.md            ← French version
 └── screenshots/
