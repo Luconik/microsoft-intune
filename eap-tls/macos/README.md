@@ -51,13 +51,13 @@ Network access granted (role assigned by NAC policy)
 ```
 
 > [!NOTE]
-> This guide covers Intune configuration only. For the one-time prerequisites (Entra ID App Registration + Apple APNs certificate), see [../../../prerequisites/README.md](../../../prerequisites/README.md). For the Aruba Central NAC configuration, see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
+> This guide covers Intune configuration only. For the one-time prerequisites (Entra ID App Registration + Apple APNs certificate), see [../../prerequisites/README.md](../../prerequisites/README.md). For the Aruba Central NAC configuration, see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 ---
 
 ## Prerequisites
 
-- One-time prerequisites completed — see [../../../prerequisites/README.md](../../../prerequisites/README.md)
+- One-time prerequisites completed — see [../../prerequisites/README.md](../../prerequisites/README.md)
   - Entra ID App Registration configured
   - **Apple MDM Push Certificate (APNs)** configured in Intune
 - Aruba Central NAC configured — see [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
