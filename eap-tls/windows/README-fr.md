@@ -48,13 +48,13 @@ Accès réseau accordé (rôle assigné par la politique NAC)
 ```
 
 > [!NOTE]
-> Ce guide couvre uniquement la configuration des profils Intune. Pour les prérequis uniques (App Registration Entra ID), voir [../../../prerequisites/README-fr.md](../../../prerequisites/README-fr.md). Pour la configuration Aruba Central NAC, voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
+> Ce guide couvre uniquement la configuration des profils Intune. Pour les prérequis uniques (App Registration Entra ID), voir [../../prerequisites/README-fr.md](../../prerequisites/README-fr.md). Pour la configuration Aruba Central NAC, voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 ---
 
 ## Prérequis
 
-- Prérequis uniques complétés — voir [../../../prerequisites/README-fr.md](../../../prerequisites/README-fr.md)
+- Prérequis uniques complétés — voir [../../prerequisites/README-fr.md](../../prerequisites/README-fr.md)
 - Aruba Central NAC configuré — voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
 - URL SCEP et certificat CA racine récupérés depuis Central NAC (étape 3.8 du guide NAC)
 - Tenant Microsoft Intune actif
