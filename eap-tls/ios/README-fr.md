@@ -54,7 +54,7 @@ Accès réseau accordé (rôle assigné par la politique NAC)
 > Ce guide couvre uniquement la configuration Intune. Pour la partie Aruba Central NAC (identity store, rôles, politiques d'autorisation, SSID), voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune).
 
 > [!NOTE]
-> Le certificat Apple MDM Push (APNs) est un prérequis unique pour toutes les plateformes Apple. Si le guide macOS a déjà été suivi, il est déjà configuré. Sinon, voir [eap-tls/macos/README-fr.md — Partie 0](../macos/README-fr.md#partie-0--certificat-apple-mdm-push).
+> Le certificat Apple MDM Push (APNs) est un prérequis unique pour toutes les plateformes Apple. Si le guide macOS a déjà été suivi, il est déjà configuré. Sinon, voir [prerequisites/README-fr.md — Partie 1](../../prerequisites/README-fr.md#partie-1--certificat-apple-mdm-push-apns).
 
 ---
 
@@ -62,7 +62,7 @@ Accès réseau accordé (rôle assigné par la politique NAC)
 
 - Aruba Central NAC configuré — voir [hpe-aruba-guides / central-nac-intune](https://github.com/Luconik/hpe-aruba-guides/tree/main/central-nac-intune)
 - Tenant Microsoft Intune actif
-- **Certificat Apple MDM Push** configuré dans Intune — voir [guide macOS Partie 0](../macos/README-fr.md#partie-0--certificat-apple-mdm-push)
+- **Certificat Apple MDM Push** configuré dans Intune — voir [guide des prérequis Partie 1](../../prerequisites/README-fr.md#partie-1--certificat-apple-mdm-push-apns)
 - iOS 16 / iPadOS 16 ou version ultérieure
 - Application Microsoft **Company Portal** installée depuis l'App Store
 
